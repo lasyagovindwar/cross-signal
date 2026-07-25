@@ -51,7 +51,8 @@ export function SavedViews({
     await supabase.from("saved_views").insert({
       user_id: userData.user.id,
       name,
-      filters: filters as unknown as Record<string, unknown>,
+      // filters is a jsonb column; the generated types haven't been refreshed yet.
+      filters: filters as never,
     });
     setSaving(false);
     await refresh();
