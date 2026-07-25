@@ -1,29 +1,105 @@
-# Welcome to your Lovable project
+# Cross Signal
 
-This project was built with [Lovable](https://lovable.dev).
+One dashboard for Google Ads, Meta Ads, and LinkedIn Ads campaign performance — ROI, CPC, CTR, and conversions in one place.
 
-## Build with Lovable
+**Live app:** https://cross-signal.lovable.app
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Table of Contents
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Environment Variables](#environment-variables)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Roadmap](#roadmap)
+- [License](#license)
 
-## Development
+## About
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Cross Signal aggregates ad campaign data from Google Ads, Meta Ads, and
+LinkedIn Ads into a single dashboard, so performance can be reviewed in one
+place instead of three separate ad managers. This is an MVP and currently
+uses realistic mock campaign data in place of live platform API calls.
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+## Features
+
+- Email/password and OAuth (Google, GitHub) authentication
+- Unified metrics: spend, ROAS, CPC, CTR, conversions
+- Filter by platform and date range
+- Rule-based alerts for CPA spikes and budget pacing
+- AI-generated performance summary
+- Saved filter views
+- Role-based access (admin / viewer)
+- CSV export
+
+## Tech Stack
+
+- React, Vite, Tailwind CSS, shadcn/ui
+- Recharts
+- Supabase (Postgres, Auth, Edge Functions)
+- Claude API (Anthropic)
+
+## Installation
+
+```bash
+git clone https://github.com/your-username/cross-signal.git
+cd cross-signal
+npm install
 npm run dev
 ```
 
-## Built with
+Runs at `http://localhost:5173`.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+## Environment Variables
+
+Create a `.env` file in the project root:
+
+```
+VITE_SUPABASE_URL=your-supabase-project-url
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+Set as a Supabase Edge Function secret (not in `.env`):
+
+```
+ANTHROPIC_API_KEY=your-anthropic-api-key
+```
+
+## Usage
+
+1. Create a Supabase project and run `supabase/schema.sql` in the SQL Editor.
+2. Enable Google and GitHub providers under Authentication → Providers.
+3. Add your local and production URLs under Authentication → URL Configuration.
+4. Copy your Supabase URL and anon key into `.env`.
+5. Run `npm run dev` and sign in at `http://localhost:5173`.
+
+Or skip local setup and use the live app: https://cross-signal.lovable.app
+
+## Project Structure
+
+```
+cross-signal/
+├── src/
+│   ├── pages/
+│   ├── components/
+│   ├── lib/
+│   └── hooks/
+├── supabase/
+│   ├── schema.sql
+│   └── functions/
+└── README.md
+```
+
+## Roadmap
+
+- [ ] Live Google Ads API integration
+- [ ] Live Meta Marketing API integration
+- [ ] Live LinkedIn Marketing API integration
+- [ ] Per-user OAuth-connected ad accounts
+- [ ] Multi-user workspaces
+
+## License
+
+MIT
