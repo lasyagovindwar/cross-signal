@@ -1,0 +1,17 @@
+{
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/client",
+  "installCommand": "npm install",
+  "functions": {
+    "dist/server/server.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/dist/server/server.js"
+    }
+  ]
+}

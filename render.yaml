@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: cross-signal
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: node dist/server/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: SUPABASE_PROJECT_ID
+        sync: false
+      - key: VITE_SUPABASE_PROJECT_ID
+        sync: false
